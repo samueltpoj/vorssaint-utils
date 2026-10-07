@@ -169,8 +169,8 @@ extension ClipboardFeatureStrings {
         recent: "최근 항목",
         pin: "고정",
         unpin: "고정 해제",
-        clearRecent: "최근 항목 지우기",
-        clearAll: "고정되지 않은 항목 지우기",
+        clearRecent: "고정되지 않은 항목 지우기",
+        clearRecentKeywords: "최근 항목 지우기",
         empty: "저장한 텍스트가 없습니다",
         disabled: "복사한 텍스트를 저장하려면 기록을 켜세요.",
         search: "복사한 텍스트 검색",
@@ -186,7 +186,6 @@ extension ClipboardFeatureStrings {
         moveUp: "위로 이동",
         moveDown: "아래로 이동",
         noResults: "결과 없음",
-        newestFirst: "최신순",
         active: "새 텍스트 저장 중",
         includeImagesFiles: "복사한 이미지와 파일도 저장",
         includeImagesFilesCaption: "이미지는 기록에 추가되고 파일은 위치 링크로 저장됩니다. 텍스트 항목처럼 고정하고 붙여넣을 수 있습니다.",
@@ -208,7 +207,9 @@ extension ClipboardFeatureStrings {
         menuBarPreview: "메뉴 막대에 최근 복사 항목 표시",
         menuBarPreviewCaption: "아이콘 옆에 최근 복사한 내용의 축약된 미리보기를 표시합니다. 클릭하면 기록이 열립니다.",
         menuBarPreviewLength: "미리보기 길이",
-        menuBarPreviewLengthSuffix: "자"
+        menuBarPreviewLengthSuffix: "자",
+        clearRecentConfirmFormat: "고정되지 않은 항목 %d개를 지울까요?",
+        clearRecentConfirmMessage: "고정된 항목과 이후에 복사한 내용은 유지됩니다. 되돌릴 수 없습니다."
     )
 }
 
@@ -288,6 +289,7 @@ extension WindowLayoutFeatureStrings {
         edgeSnapOpenSystemSettings: "데스크탑 및 Dock 열기",
         edgeSnapWaitingForSystem: "Vorssaint에서 켜졌습니다. macOS 타일링을 끄면 바로 작동합니다.",
         marginMaximize: "여백 두고 최대화",
+        marginPerEdge: "가장자리별 여백",
         gapsSection: "간격",
         gapsCaption: "스냅된 윈도우 사이, 그리고 윈도우와 화면 가장자리 사이의 간격입니다.",
         windowGap: "윈도우 간격",
@@ -486,7 +488,7 @@ struct ClipboardFeatureStrings {
     let pin: String
     let unpin: String
     let clearRecent: String
-    let clearAll: String
+    let clearRecentKeywords: String
     let empty: String
     let disabled: String
     let search: String
@@ -502,7 +504,6 @@ struct ClipboardFeatureStrings {
     let moveUp: String
     let moveDown: String
     let noResults: String
-    let newestFirst: String
     let active: String
     let includeImagesFiles: String
     let includeImagesFilesCaption: String
@@ -525,6 +526,8 @@ struct ClipboardFeatureStrings {
     let menuBarPreviewCaption: String
     let menuBarPreviewLength: String
     let menuBarPreviewLengthSuffix: String
+    let clearRecentConfirmFormat: String
+    let clearRecentConfirmMessage: String
 
     static let enUS = ClipboardFeatureStrings(
         title: "Clipboard",
@@ -545,8 +548,8 @@ struct ClipboardFeatureStrings {
         recent: "Recent",
         pin: "Pin",
         unpin: "Unpin",
-        clearRecent: "Clear recent",
-        clearAll: "Clear unpinned",
+        clearRecent: "Clear unpinned",
+        clearRecentKeywords: "Clear recent",
         empty: "No saved text",
         disabled: "Enable history to start saving copied text.",
         search: "Search copied text",
@@ -562,7 +565,6 @@ struct ClipboardFeatureStrings {
         moveUp: "Move up",
         moveDown: "Move down",
         noResults: "No results",
-        newestFirst: "Newest first",
         active: "Saving new text",
         includeImagesFiles: "Also save copied images and files",
         includeImagesFilesCaption: "Images join the history and files are remembered as links to their location. Pin and paste them like any text item.",
@@ -584,7 +586,9 @@ struct ClipboardFeatureStrings {
         menuBarPreview: "Show latest copy in the menu bar",
         menuBarPreviewCaption: "Shows a shortened preview of your last copy next to the icon. Click it to open the history.",
         menuBarPreviewLength: "Preview length",
-        menuBarPreviewLengthSuffix: "characters"
+        menuBarPreviewLengthSuffix: "characters",
+        clearRecentConfirmFormat: "Clear unpinned (%d)?",
+        clearRecentConfirmMessage: "Pinned items stay, and so does anything copied after this. This can’t be undone."
     )
 
     static let ptBR = ClipboardFeatureStrings(
@@ -606,8 +610,8 @@ struct ClipboardFeatureStrings {
         recent: "Recentes",
         pin: "Fixar",
         unpin: "Desfixar",
-        clearRecent: "Limpar recentes",
-        clearAll: "Limpar não fixados",
+        clearRecent: "Limpar não fixados",
+        clearRecentKeywords: "Limpar recentes",
         empty: "Nenhum texto salvo",
         disabled: "Ative o histórico para começar a guardar textos copiados.",
         search: "Buscar textos copiados",
@@ -623,7 +627,6 @@ struct ClipboardFeatureStrings {
         moveUp: "Mover para cima",
         moveDown: "Mover para baixo",
         noResults: "Nenhum resultado",
-        newestFirst: "Mais recentes primeiro",
         active: "Guardando novos textos",
         includeImagesFiles: "Guardar também imagens e arquivos copiados",
         includeImagesFilesCaption: "Imagens entram no histórico e arquivos são lembrados como links para o local deles. Fixe e cole como qualquer texto.",
@@ -645,7 +648,9 @@ struct ClipboardFeatureStrings {
         menuBarPreview: "Mostrar a última cópia na barra de menus",
         menuBarPreviewCaption: "Mostra uma prévia resumida da sua última cópia ao lado do ícone. Clique nela para abrir o histórico.",
         menuBarPreviewLength: "Tamanho da prévia",
-        menuBarPreviewLengthSuffix: "caracteres"
+        menuBarPreviewLengthSuffix: "caracteres",
+        clearRecentConfirmFormat: "Limpar não fixados (%d)?",
+        clearRecentConfirmMessage: "Os itens fixados ficam, e o que for copiado depois disso também. Não dá para desfazer."
     )
 
     static let tr = ClipboardFeatureStrings(
@@ -667,8 +672,8 @@ struct ClipboardFeatureStrings {
         recent: "Son",
         pin: "Sabitle",
         unpin: "Sabitlemeyi kaldır",
-        clearRecent: "Sonları temizle",
-        clearAll: "Sabitlenmeyenleri temizle",
+        clearRecent: "Sabitlenmeyenleri temizle",
+        clearRecentKeywords: "Sonları temizle",
         empty: "Kayıtlı metin yok",
         disabled: "Kopyalanan metinleri kaydetmeye başlamak için geçmişi etkinleştir.",
         search: "Kopyalanan metinlerde ara",
@@ -684,7 +689,6 @@ struct ClipboardFeatureStrings {
         moveUp: "Yukarı taşı",
         moveDown: "Aşağı taşı",
         noResults: "Sonuç yok",
-        newestFirst: "En yeniler önce",
         active: "Yeni metinler kaydediliyor",
         includeImagesFiles: "Kopyalanan görselleri ve dosyaları da kaydet",
         includeImagesFilesCaption: "Görseller geçmişe eklenir, dosyalar konumlarına bağlantı olarak hatırlanır. Metin gibi sabitle ve yapıştır.",
@@ -706,7 +710,9 @@ struct ClipboardFeatureStrings {
         menuBarPreview: "Menü çubuğunda son kopyalananı göster",
         menuBarPreviewCaption: "Simgenin yanında son kopyalananın kısaltılmış bir önizlemesini gösterir. Geçmişi açmak için üzerine tıkla.",
         menuBarPreviewLength: "Önizleme uzunluğu",
-        menuBarPreviewLengthSuffix: "karakter"
+        menuBarPreviewLengthSuffix: "karakter",
+        clearRecentConfirmFormat: "%d sabitlenmemiş öğe temizlensin mi?",
+        clearRecentConfirmMessage: "Sabitlenen öğeler ve bundan sonra kopyalananlar kalır. Bu işlem geri alınamaz."
     )
 
     static let ru = ClipboardFeatureStrings(
@@ -728,8 +734,8 @@ struct ClipboardFeatureStrings {
         recent: "Недавние",
         pin: "Закрепить",
         unpin: "Открепить",
-        clearRecent: "Очистить недавнее",
-        clearAll: "Очистить незакреплённые",
+        clearRecent: "Очистить незакреплённые",
+        clearRecentKeywords: "Очистить недавнее",
         empty: "Нет сохранённого текста",
         disabled: "Включите историю, чтобы начать сохранять скопированный текст.",
         search: "Поиск по скопированному тексту",
@@ -745,7 +751,6 @@ struct ClipboardFeatureStrings {
         moveUp: "Вверх",
         moveDown: "Вниз",
         noResults: "Ничего не найдено",
-        newestFirst: "Сначала новые",
         active: "Сохраняет новые элементы",
         includeImagesFiles: "Сохранять также изображения и файлы",
         includeImagesFilesCaption: "Изображения попадают в историю, а файлы запоминаются как ссылки на их расположение. Закрепляйте и вставляйте их как текст.",
@@ -767,7 +772,9 @@ struct ClipboardFeatureStrings {
         menuBarPreview: "Показывать последнюю скопированную запись в строке меню",
         menuBarPreviewCaption: "Показывает сокращённый предпросмотр последней скопированной записи рядом со значком. Нажмите на него, чтобы открыть историю.",
         menuBarPreviewLength: "Длина предпросмотра",
-        menuBarPreviewLengthSuffix: "символов"
+        menuBarPreviewLengthSuffix: "символов",
+        clearRecentConfirmFormat: "Очистить незакреплённые (%d)?",
+        clearRecentConfirmMessage: "Закреплённые останутся, как и всё, что скопировано после этого. Отменить нельзя."
     )
 
     static let es = ClipboardFeatureStrings(
@@ -789,8 +796,8 @@ struct ClipboardFeatureStrings {
         recent: "Recientes",
         pin: "Fijar",
         unpin: "Desfijar",
-        clearRecent: "Limpiar recientes",
-        clearAll: "Limpiar no fijados",
+        clearRecent: "Limpiar no fijados",
+        clearRecentKeywords: "Limpiar recientes",
         empty: "No hay texto guardado",
         disabled: "Activa el historial para empezar a guardar texto copiado.",
         search: "Buscar texto copiado",
@@ -806,7 +813,6 @@ struct ClipboardFeatureStrings {
         moveUp: "Subir",
         moveDown: "Bajar",
         noResults: "Sin resultados",
-        newestFirst: "Más recientes primero",
         active: "Guardando nuevo texto",
         includeImagesFiles: "Guardar también imágenes y archivos copiados",
         includeImagesFilesCaption: "Las imágenes entran en el historial y los archivos se recuerdan como enlaces a su ubicación. Fíjalos y pégalos como cualquier texto.",
@@ -828,7 +834,9 @@ struct ClipboardFeatureStrings {
         menuBarPreview: "Mostrar la última copia en la barra de menús",
         menuBarPreviewCaption: "Muestra una vista previa abreviada de tu última copia junto al icono. Haz clic para abrir el historial.",
         menuBarPreviewLength: "Longitud de la vista previa",
-        menuBarPreviewLengthSuffix: "caracteres"
+        menuBarPreviewLengthSuffix: "caracteres",
+        clearRecentConfirmFormat: "¿Limpiar no fijados (%d)?",
+        clearRecentConfirmMessage: "Los fijados se conservan, y también lo que copies después. No se puede deshacer."
     )
 
     static let sk = ClipboardFeatureStrings(
@@ -850,8 +858,8 @@ struct ClipboardFeatureStrings {
         recent: "Nedávne",
         pin: "Pripnúť",
         unpin: "Odopnúť",
-        clearRecent: "Vymazať nedávne",
-        clearAll: "Vymazať nepripnuté",
+        clearRecent: "Vymazať nepripnuté",
+        clearRecentKeywords: "Vymazať nedávne",
         empty: "Žiadny uložený text",
         disabled: "Históriu zapnite, aby sa začal ukladať skopírovaný text.",
         search: "Hľadať v skopírovanom texte",
@@ -867,7 +875,6 @@ struct ClipboardFeatureStrings {
         moveUp: "Presunúť nahor",
         moveDown: "Presunúť nadol",
         noResults: "Žiadne výsledky",
-        newestFirst: "Najnovšie ako prvé",
         active: "Ukladá sa nový text",
         includeImagesFiles: "Ukladať aj skopírované obrázky a súbory",
         includeImagesFilesCaption: "Obrázky sa pridajú do histórie a súbory sa zapamätajú ako odkazy na ich umiestnenie. Pripínajte a prilepujte ich ako hocijaký text.",
@@ -889,7 +896,9 @@ struct ClipboardFeatureStrings {
         menuBarPreview: "Zobraziť poslednú kópiu v lište",
         menuBarPreviewCaption: "Zobrazí skrátený náhľad poslednej kópie vedľa ikony. Kliknutím naň otvoríte históriu.",
         menuBarPreviewLength: "Dĺžka náhľadu",
-        menuBarPreviewLengthSuffix: "znakov"
+        menuBarPreviewLengthSuffix: "znakov",
+        clearRecentConfirmFormat: "Vymazať nepripnuté (%d)?",
+        clearRecentConfirmMessage: "Pripnuté položky zostanú, rovnako ako všetko, čo skopírujete potom. Nedá sa to vrátiť späť."
     )
 
     static let de = ClipboardFeatureStrings(
@@ -911,8 +920,8 @@ struct ClipboardFeatureStrings {
         recent: "Zuletzt",
         pin: "Anheften",
         unpin: "Lösen",
-        clearRecent: "Zuletzt löschen",
-        clearAll: "Nicht angeheftete löschen",
+        clearRecent: "Nicht angeheftete löschen",
+        clearRecentKeywords: "Zuletzt löschen",
         empty: "Kein gespeicherter Text",
         disabled: "Aktiviere den Verlauf, um kopierten Text zu speichern.",
         search: "Kopierten Text suchen",
@@ -928,7 +937,6 @@ struct ClipboardFeatureStrings {
         moveUp: "Nach oben",
         moveDown: "Nach unten",
         noResults: "Keine Ergebnisse",
-        newestFirst: "Neueste zuerst",
         active: "Speichert neuen Text",
         includeImagesFiles: "Auch kopierte Bilder und Dateien speichern",
         includeImagesFilesCaption: "Bilder wandern in den Verlauf, Dateien werden als Verweise auf ihren Ort gemerkt. Anheften und Einsetzen wie bei Text.",
@@ -950,7 +958,9 @@ struct ClipboardFeatureStrings {
         menuBarPreview: "Letzte Kopie in der Menüleiste anzeigen",
         menuBarPreviewCaption: "Zeigt eine gekürzte Vorschau deiner letzten Kopie neben dem Symbol. Klicke darauf, um den Verlauf zu öffnen.",
         menuBarPreviewLength: "Vorschaulänge",
-        menuBarPreviewLengthSuffix: "Zeichen"
+        menuBarPreviewLengthSuffix: "Zeichen",
+        clearRecentConfirmFormat: "Nicht angeheftete löschen (%d)?",
+        clearRecentConfirmMessage: "Angeheftete bleiben, ebenso alles, was du danach kopierst. Das lässt sich nicht widerrufen."
     )
 
     static let fr = ClipboardFeatureStrings(
@@ -965,15 +975,15 @@ struct ClipboardFeatureStrings {
         showInPanel: "Afficher dans le panneau",
         shortcut: "Raccourci de l’historique",
         shortcutCaption: "Ouvre une fenêtre rapide avec recherche, éléments épinglés et raccourcis ⌘1 à ⌘9 pour coller dans l’app précédente.",
-        shortcutHint: "Cliquez sur une ligne pour la coller dans l’app précédente. ⌘+clic en sélectionne plusieurs ; ⌘C copie sans coller.",
+        shortcutHint: "Cliquez sur une ligne pour la coller dans l’app précédente. ⌘+clic en sélectionne plusieurs\u{00A0}; ⌘C copie sans coller.",
         clickRowShortcut: "Cliquer la ligne",
         commandClickShortcut: "⌘ Clic",
         pinned: "Épinglés",
         recent: "Récents",
         pin: "Épingler",
         unpin: "Désépingler",
-        clearRecent: "Effacer les récents",
-        clearAll: "Effacer non épinglés",
+        clearRecent: "Effacer non épinglés",
+        clearRecentKeywords: "Effacer les récents",
         empty: "Aucun texte enregistré",
         disabled: "Activez l’historique pour commencer à enregistrer le texte copié.",
         search: "Rechercher le texte copié",
@@ -989,7 +999,6 @@ struct ClipboardFeatureStrings {
         moveUp: "Monter",
         moveDown: "Descendre",
         noResults: "Aucun résultat",
-        newestFirst: "Plus récents d’abord",
         active: "Enregistre le nouveau texte",
         includeImagesFiles: "Enregistrer aussi les images et fichiers copiés",
         includeImagesFilesCaption: "Les images rejoignent l’historique et les fichiers sont mémorisés comme des liens vers leur emplacement. Épinglez-les et collez-les comme du texte.",
@@ -1011,7 +1020,9 @@ struct ClipboardFeatureStrings {
         menuBarPreview: "Afficher la dernière copie dans la barre des menus",
         menuBarPreviewCaption: "Affiche un aperçu raccourci de votre dernière copie à côté de l’icône. Cliquez dessus pour ouvrir l’historique.",
         menuBarPreviewLength: "Longueur de l’aperçu",
-        menuBarPreviewLengthSuffix: "caractères"
+        menuBarPreviewLengthSuffix: "caractères",
+        clearRecentConfirmFormat: "Effacer non épinglés (%d)\u{00A0}?",
+        clearRecentConfirmMessage: "Les éléments épinglés restent, comme tout ce qui sera copié ensuite. Action irréversible."
     )
 
     static let it = ClipboardFeatureStrings(
@@ -1033,8 +1044,8 @@ struct ClipboardFeatureStrings {
         recent: "Recenti",
         pin: "Fissa",
         unpin: "Sblocca",
-        clearRecent: "Cancella recenti",
-        clearAll: "Cancella non fissati",
+        clearRecent: "Cancella non fissati",
+        clearRecentKeywords: "Cancella recenti",
         empty: "Nessun testo salvato",
         disabled: "Attiva la cronologia per iniziare a salvare il testo copiato.",
         search: "Cerca testo copiato",
@@ -1050,7 +1061,6 @@ struct ClipboardFeatureStrings {
         moveUp: "Sposta su",
         moveDown: "Sposta giù",
         noResults: "Nessun risultato",
-        newestFirst: "Più recenti prima",
         active: "Salvataggio nuovo testo",
         includeImagesFiles: "Salva anche immagini e file copiati",
         includeImagesFilesCaption: "Le immagini entrano nella cronologia e i file vengono ricordati come collegamenti alla loro posizione. Fissali e incollali come qualsiasi testo.",
@@ -1072,7 +1082,9 @@ struct ClipboardFeatureStrings {
         menuBarPreview: "Mostra l’ultima copia nella barra dei menu",
         menuBarPreviewCaption: "Mostra un’anteprima abbreviata dell’ultima copia accanto all’icona. Fai clic per aprire la cronologia.",
         menuBarPreviewLength: "Lunghezza dell’anteprima",
-        menuBarPreviewLengthSuffix: "caratteri"
+        menuBarPreviewLengthSuffix: "caratteri",
+        clearRecentConfirmFormat: "Cancellare non fissati (%d)?",
+        clearRecentConfirmMessage: "Gli elementi fissati restano, come tutto ciò che copi dopo. Non si può annullare."
     )
 
     static let ja = ClipboardFeatureStrings(
@@ -1094,8 +1106,8 @@ struct ClipboardFeatureStrings {
         recent: "最近",
         pin: "固定",
         unpin: "固定解除",
-        clearRecent: "最近を消去",
-        clearAll: "未固定を消去",
+        clearRecent: "未固定を消去",
+        clearRecentKeywords: "最近を消去",
         empty: "保存済みテキストなし",
         disabled: "履歴を有効にすると、コピーしたテキストを保存できます。",
         search: "コピーしたテキストを検索",
@@ -1111,7 +1123,6 @@ struct ClipboardFeatureStrings {
         moveUp: "上へ移動",
         moveDown: "下へ移動",
         noResults: "結果なし",
-        newestFirst: "新しい順",
         active: "新しいテキストを保存中",
         includeImagesFiles: "コピーした画像やファイルも保存",
         includeImagesFilesCaption: "画像は履歴に入り、ファイルは場所へのリンクとして記憶されます。テキストと同じようにピン留めやペーストができます。",
@@ -1133,7 +1144,9 @@ struct ClipboardFeatureStrings {
         menuBarPreview: "メニューバーに直前のコピーを表示",
         menuBarPreviewCaption: "アイコンの横に直前のコピーの短縮プレビューを表示します。クリックすると履歴が開きます。",
         menuBarPreviewLength: "プレビューの長さ",
-        menuBarPreviewLengthSuffix: "文字"
+        menuBarPreviewLengthSuffix: "文字",
+        clearRecentConfirmFormat: "未固定の%d件を消去しますか？",
+        clearRecentConfirmMessage: "固定済みの項目と、このあとにコピーした内容は残ります。元に戻せません。"
     )
 
     static let zhHans = ClipboardFeatureStrings(
@@ -1155,8 +1168,8 @@ struct ClipboardFeatureStrings {
         recent: "最近",
         pin: "固定",
         unpin: "取消固定",
-        clearRecent: "清除最近项目",
-        clearAll: "清除未固定项目",
+        clearRecent: "清除未固定项目",
+        clearRecentKeywords: "清除最近项目",
         empty: "没有保存的文本",
         disabled: "启用历史记录后即可开始保存拷贝的文本。",
         search: "搜索拷贝的文本",
@@ -1168,11 +1181,10 @@ struct ClipboardFeatureStrings {
         selectShortcutAction: "选择",
         pasteSelectedFormat: "粘贴 %d 项",
         copySelectedFormat: "拷贝 %d 项",
-        clearSelection: "清除选择",
+        clearSelection: "取消选择",
         moveUp: "上移",
         moveDown: "下移",
         noResults: "没有结果",
-        newestFirst: "最新优先",
         active: "正在保存新文本",
         includeImagesFiles: "同时保存拷贝的图片和文件",
         includeImagesFilesCaption: "图片会进入历史记录，文件会以其位置链接的形式被记住。可以像文本一样固定和粘贴。",
@@ -1194,7 +1206,9 @@ struct ClipboardFeatureStrings {
         menuBarPreview: "在菜单栏显示最近拷贝的内容",
         menuBarPreviewCaption: "在图标旁显示最近拷贝内容的简短预览，点击即可打开历史记录。",
         menuBarPreviewLength: "预览长度",
-        menuBarPreviewLengthSuffix: "个字符"
+        menuBarPreviewLengthSuffix: "个字符",
+        clearRecentConfirmFormat: "清除 %d 个未固定项目？",
+        clearRecentConfirmMessage: "已固定的项目和此后拷贝的内容会保留。此操作无法撤销。"
     )
 
     static let zhTW = ClipboardFeatureStrings(
@@ -1216,8 +1230,8 @@ struct ClipboardFeatureStrings {
         recent: "最近",
         pin: "釘選",
         unpin: "取消釘選",
-        clearRecent: "清除最近項目",
-        clearAll: "清除未釘選項目",
+        clearRecent: "清除未釘選項目",
+        clearRecentKeywords: "清除最近項目",
         empty: "沒有儲存的文字",
         disabled: "開啟紀錄後，即可開始儲存複製的文字。",
         search: "搜尋複製的文字",
@@ -1229,11 +1243,10 @@ struct ClipboardFeatureStrings {
         selectShortcutAction: "選取",
         pasteSelectedFormat: "貼上 %d 個",
         copySelectedFormat: "拷貝 %d 個",
-        clearSelection: "清除選取項目",
+        clearSelection: "取消選取",
         moveUp: "上移",
         moveDown: "下移",
         noResults: "沒有結果",
-        newestFirst: "最新優先",
         active: "正在儲存新文字",
         includeImagesFiles: "同時保存拷貝的圖片和檔案",
         includeImagesFilesCaption: "圖片會進入歷史記錄，檔案會以其位置連結的形式被記住。可以像文字一樣固定和貼上。",
@@ -1255,7 +1268,9 @@ struct ClipboardFeatureStrings {
         menuBarPreview: "在選單列顯示最近複製的內容",
         menuBarPreviewCaption: "在圖示旁顯示最近複製內容的簡短預覽，點選即可開啟紀錄。",
         menuBarPreviewLength: "預覽長度",
-        menuBarPreviewLengthSuffix: "個字元"
+        menuBarPreviewLengthSuffix: "個字元",
+        clearRecentConfirmFormat: "清除 %d 個未釘選項目？",
+        clearRecentConfirmMessage: "已釘選的項目和之後複製的內容會保留。此動作無法還原。"
     )
 
     static let zhHK = ClipboardFeatureStrings(
@@ -1277,8 +1292,8 @@ struct ClipboardFeatureStrings {
         recent: "最近",
         pin: "釘選",
         unpin: "取消釘選",
-        clearRecent: "清除最近項目",
-        clearAll: "清除未釘選項目",
+        clearRecent: "清除未釘選項目",
+        clearRecentKeywords: "清除最近項目",
         empty: "沒有已儲存的文字",
         disabled: "開啟記錄後，即可開始儲存複製的文字。",
         search: "搜尋複製的文字",
@@ -1290,11 +1305,10 @@ struct ClipboardFeatureStrings {
         selectShortcutAction: "選取",
         pasteSelectedFormat: "貼上 %d 個",
         copySelectedFormat: "複製 %d 個",
-        clearSelection: "清除所選項目",
+        clearSelection: "取消選取",
         moveUp: "上移",
         moveDown: "下移",
         noResults: "沒有結果",
-        newestFirst: "最新優先",
         active: "正在儲存新文字",
         includeImagesFiles: "同時儲存拷貝的圖片和檔案",
         includeImagesFilesCaption: "圖片會加入歷史記錄，檔案會以其位置連結的形式被記住。可以像文字一樣固定和貼上。",
@@ -1316,7 +1330,9 @@ struct ClipboardFeatureStrings {
         menuBarPreview: "在選單列顯示最近複製的內容",
         menuBarPreviewCaption: "在圖示旁顯示最近複製內容的簡短預覽，按一下即可開啟記錄。",
         menuBarPreviewLength: "預覽長度",
-        menuBarPreviewLengthSuffix: "個字元"
+        menuBarPreviewLengthSuffix: "個字元",
+        clearRecentConfirmFormat: "清除 %d 個未釘選項目？",
+        clearRecentConfirmMessage: "已釘選的項目和之後複製的內容會保留。此動作無法還原。"
     )
 }
 
@@ -1395,6 +1411,7 @@ struct WindowLayoutFeatureStrings {
     let edgeSnapOpenSystemSettings: String
     let edgeSnapWaitingForSystem: String
     let marginMaximize: String
+    let marginPerEdge: String
     let gapsSection: String
     let gapsCaption: String
     let windowGap: String
@@ -1483,6 +1500,7 @@ struct WindowLayoutFeatureStrings {
         edgeSnapOpenSystemSettings: "Open Desktop & Dock",
         edgeSnapWaitingForSystem: "Enabled in Vorssaint. It starts working as soon as macOS tiling is off.",
         marginMaximize: "Maximize with Margin",
+        marginPerEdge: "Margin per edge",
         gapsSection: "Gaps",
         gapsCaption: "Space between snapped windows, and between windows and the screen edge.",
         windowGap: "Window gap",
@@ -1572,6 +1590,7 @@ struct WindowLayoutFeatureStrings {
         edgeSnapOpenSystemSettings: "Abrir Mesa e Dock",
         edgeSnapWaitingForSystem: "Ativado no Vorssaint. Começa a funcionar assim que o encaixe do macOS for desligado.",
         marginMaximize: "Maximizar com margem",
+        marginPerEdge: "Margem por borda",
         gapsSection: "Espaçamento",
         gapsCaption: "Espaço entre janelas ajustadas e entre as janelas e a borda da tela.",
         windowGap: "Espaço entre janelas",
@@ -1661,6 +1680,7 @@ struct WindowLayoutFeatureStrings {
         edgeSnapOpenSystemSettings: "Masaüstü ve Dock’u Aç",
         edgeSnapWaitingForSystem: "Vorssaint’ta açık. macOS döşemesi kapanınca çalışmaya başlar.",
         marginMaximize: "Kenar boşluklu büyüt",
+        marginPerEdge: "Her kenardaki boşluk",
         gapsSection: "Boşluklar",
         gapsCaption: "Yaslanan pencereler arasındaki ve pencerelerle ekran kenarı arasındaki boşluk.",
         windowGap: "Pencere boşluğu",
@@ -1750,6 +1770,7 @@ struct WindowLayoutFeatureStrings {
         edgeSnapOpenSystemSettings: "Открыть «Рабочий стол и Dock»",
         edgeSnapWaitingForSystem: "Включено в Vorssaint. Заработает сразу после отключения размещения окон macOS.",
         marginMaximize: "Развернуть с отступом",
+        marginPerEdge: "Отступ с каждой стороны",
         gapsSection: "Отступы",
         gapsCaption: "Расстояние между прикреплёнными окнами и между окнами и краем экрана.",
         windowGap: "Отступ между окнами",
@@ -1839,6 +1860,7 @@ struct WindowLayoutFeatureStrings {
         edgeSnapOpenSystemSettings: "Abrir Escritorio y Dock",
         edgeSnapWaitingForSystem: "Activado en Vorssaint. Funcionará en cuanto se desactive el ajuste de ventanas de macOS.",
         marginMaximize: "Maximizar con margen",
+        marginPerEdge: "Margen por borde",
         gapsSection: "Espaciado",
         gapsCaption: "Espacio entre ventanas ajustadas y entre las ventanas y el borde de la pantalla.",
         windowGap: "Espacio entre ventanas",
@@ -1928,6 +1950,7 @@ struct WindowLayoutFeatureStrings {
         edgeSnapOpenSystemSettings: "Otvoriť Plochu a Dock",
         edgeSnapWaitingForSystem: "Zapnuté vo Vorssaint. Začne fungovať hneď po vypnutí dlaždicovania v macOS.",
         marginMaximize: "Maximalizovať s okrajom",
+        marginPerEdge: "Okraj na každej strane",
         gapsSection: "Medzery",
         gapsCaption: "Priestor medzi priťahovanými oknami a medzi oknami a okrajom obrazovky.",
         windowGap: "Medzera medzi oknami",
@@ -2017,6 +2040,7 @@ struct WindowLayoutFeatureStrings {
         edgeSnapOpenSystemSettings: "Schreibtisch & Dock öffnen",
         edgeSnapWaitingForSystem: "In Vorssaint aktiviert. Es funktioniert, sobald die Fensteranordnung von macOS aus ist.",
         marginMaximize: "Mit Rand maximieren",
+        marginPerEdge: "Rand pro Seite",
         gapsSection: "Abstände",
         gapsCaption: "Abstand zwischen angedockten Fenstern sowie zwischen Fenstern und dem Bildschirmrand.",
         windowGap: "Fensterabstand",
@@ -2106,6 +2130,7 @@ struct WindowLayoutFeatureStrings {
         edgeSnapOpenSystemSettings: "Ouvrir Bureau et Dock",
         edgeSnapWaitingForSystem: "Activé dans Vorssaint. Il fonctionnera dès que le placement des fenêtres de macOS sera désactivé.",
         marginMaximize: "Agrandir avec marge",
+        marginPerEdge: "Marge de chaque côté",
         gapsSection: "Espacements",
         gapsCaption: "Espace entre les fenêtres ancrées et entre les fenêtres et le bord de l’écran.",
         windowGap: "Espace entre fenêtres",
@@ -2195,6 +2220,7 @@ struct WindowLayoutFeatureStrings {
         edgeSnapOpenSystemSettings: "Apri Scrivania e Dock",
         edgeSnapWaitingForSystem: "Attivato in Vorssaint. Funzionerà appena l’affiancamento di macOS sarà disattivato.",
         marginMaximize: "Massimizza con margine",
+        marginPerEdge: "Margine per lato",
         gapsSection: "Spaziatura",
         gapsCaption: "Spazio tra le finestre agganciate e tra le finestre e il bordo dello schermo.",
         windowGap: "Spazio tra finestre",
@@ -2284,6 +2310,7 @@ struct WindowLayoutFeatureStrings {
         edgeSnapOpenSystemSettings: "デスクトップとDockを開く",
         edgeSnapWaitingForSystem: "Vorssaintでオンになっています。macOSのタイル表示をオフにすると動作します。",
         marginMaximize: "余白付きで最大化",
+        marginPerEdge: "各辺の余白",
         gapsSection: "間隔",
         gapsCaption: "スナップしたウインドウ同士、およびウインドウと画面端の間隔です。",
         windowGap: "ウインドウの間隔",
@@ -2373,6 +2400,7 @@ struct WindowLayoutFeatureStrings {
         edgeSnapOpenSystemSettings: "打开桌面与程序坞",
         edgeSnapWaitingForSystem: "已在 Vorssaint 中开启。关闭 macOS 窗口平铺后即可使用。",
         marginMaximize: "带边距最大化",
+        marginPerEdge: "每侧边距",
         gapsSection: "间距",
         gapsCaption: "贴靠窗口之间以及窗口与屏幕边缘之间的间距。",
         windowGap: "窗口间距",
@@ -2462,6 +2490,7 @@ struct WindowLayoutFeatureStrings {
         edgeSnapOpenSystemSettings: "開啟桌面與 Dock",
         edgeSnapWaitingForSystem: "已在 Vorssaint 中開啟。關閉 macOS 視窗並排後即可使用。",
         marginMaximize: "保留邊距最大化",
+        marginPerEdge: "每側邊距",
         gapsSection: "間距",
         gapsCaption: "貼齊視窗之間以及視窗與螢幕邊緣之間的間距。",
         windowGap: "視窗間距",
@@ -2551,6 +2580,7 @@ struct WindowLayoutFeatureStrings {
         edgeSnapOpenSystemSettings: "開啟桌面與 Dock",
         edgeSnapWaitingForSystem: "已在 Vorssaint 中開啟。關閉 macOS 視窗並排後即可使用。",
         marginMaximize: "保留邊距最大化",
+        marginPerEdge: "每側邊距",
         gapsSection: "間距",
         gapsCaption: "貼齊視窗之間以及視窗與螢幕邊緣之間的間距。",
         windowGap: "視窗間距",
@@ -3087,8 +3117,8 @@ extension ClipboardFeatureStrings {
         recent: "Недавнє",
         pin: "Закріпити",
         unpin: "Відкріпити",
-        clearRecent: "Очистити недавні",
-        clearAll: "Очистити незакріплене",
+        clearRecent: "Очистити незакріплене",
+        clearRecentKeywords: "Очистити недавні",
         empty: "Немає збереженого тексту",
         disabled: "Увімкніть історію, щоб почати зберігати скопійований текст.",
         search: "Шукати скопійований текст",
@@ -3104,7 +3134,6 @@ extension ClipboardFeatureStrings {
         moveUp: "Вгору",
         moveDown: "Вниз",
         noResults: "Немає результатів",
-        newestFirst: "Спочатку нові",
         active: "Збереження нового тексту",
         includeImagesFiles: "Також зберігати скопійовані зображення та файли",
         includeImagesFilesCaption: "Зображення потрапляють в історію, а файли запам’ятовуються як посилання на їхнє розташування. Закріплюйте та вставляйте їх як будь-який текстовий елемент.",
@@ -3126,7 +3155,9 @@ extension ClipboardFeatureStrings {
         menuBarPreview: "Показувати останню копію на смузі меню",
         menuBarPreviewCaption: "Показує скорочений перегляд останнього скопійованого вмісту поруч зі значком. Натисніть, щоб відкрити історію.",
         menuBarPreviewLength: "Довжина перегляду",
-        menuBarPreviewLengthSuffix: "симв."
+        menuBarPreviewLengthSuffix: "симв.",
+        clearRecentConfirmFormat: "Очистити незакріплене (%d)?",
+        clearRecentConfirmMessage: "Закріплені залишаться, як і все, що скопійовано після цього. Скасувати не можна."
     )
 }
 
@@ -3206,6 +3237,7 @@ extension WindowLayoutFeatureStrings {
         edgeSnapOpenSystemSettings: "Відкрити «Робочий стіл і Dock»",
         edgeSnapWaitingForSystem: "Увімкнено в Vorssaint. Почне працювати, щойно мозаїку macOS буде вимкнено.",
         marginMaximize: "Розгорнути з полем",
+        marginPerEdge: "Відступ з кожного боку",
         gapsSection: "Проміжки",
         gapsCaption: "Проміжок між прилиплими вікнами та між вікнами та краєм екрана.",
         windowGap: "Проміжок між вікнами",

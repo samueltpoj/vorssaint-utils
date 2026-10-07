@@ -2,16 +2,18 @@
 // Copyright (C) 2026 Vorssaint
 
 import SwiftUI
+import ServiceManagement
 
 /// App-wide startup and appearance settings.
 struct GeneralSettings: View {
     @ObservedObject private var l10n = L10n.shared
     @ObservedObject private var appearance = AppAppearanceController.shared
     @ObservedObject private var hotkeys = HotkeyManager.shared
-    @State private var launchAtLogin = UserDefaults.standard.bool(
-        forKey: DefaultsKey.launchAtLoginWanted)
+    // Seeded from the stored choice so the switch does not flash off while
+    // the status read is still on its way.
+    @State private var loginRegistration: LaunchAtLoginSupport.Registration =
+        UserDefaults.standard.bool(forKey: DefaultsKey.launchAtLoginWanted) ? .enabled : .off
     @State private var loginError: String?
-    @State private var loginPending = true
     @State private var loginRefreshID = UUID()
     @AppStorage(DefaultsKey.hotkeyEnabled) private var hotkeyEnabled = true
 
@@ -35,24 +37,34 @@ struct GeneralSettings: View {
             .padding(22)
         }
         .onAppear { refreshLaunchAtLogin() }
+        .onReceive(NotificationCenter.default.publisher(
+            for: LaunchAtLoginSupport.settingsRefreshRequested)) { _ in
+            refreshLaunchAtLogin()
+        }
     }
 
     private var basicsCard: some View {
         SettingsCard {
             SettingsRow(symbol: "laptopcomputer", title: l10n.s.launchAtLogin,
                         caption: text.launchAtLoginCaption) {
-                HStack {
-                    if loginPending { ProgressView().controlSize(.small) }
-                    Toggle(l10n.s.launchAtLogin, isOn: Binding(
-                        get: { launchAtLogin },
-                        set: { setLaunchAtLogin($0) }
-                    ))
-                        .labelsHidden()
-                        .toggleStyle(.switch)
-                        .disabled(loginPending)
-                }
+                // Waiting on approval it is still registered, so it reads on and
+                // switching it off unregisters it, which also clears the note.
+                Toggle(l10n.s.launchAtLogin, isOn: Binding(
+                    get: { loginRegistration != .off },
+                    set: { setLaunchAtLogin($0) }
+                ))
+                    .labelsHidden()
+                    .toggleStyle(.switch)
             }
-            if let loginError {
+            if loginRegistration == .needsApproval {
+                Text(l10n.s.launchAtLoginNeedsApproval)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                Button(l10n.s.permissionOpenSettings) {
+                    SMAppService.openSystemSettingsLoginItems()
+                }
+            } else if let loginError {
                 Text(loginError)
                     .font(.caption)
                     .foregroundStyle(.red)
@@ -142,24 +154,28 @@ struct GeneralSettings: View {
     private func refreshLaunchAtLogin() {
         let requestID = UUID()
         loginRefreshID = requestID
-        loginPending = true
-        LaunchAtLogin.refresh { enabled in
-            guard loginRefreshID == requestID else { return }
-            launchAtLogin = enabled
-            loginPending = false
+        DispatchQueue.global(qos: .userInitiated).async {
+            let registration = LaunchAtLogin.registration
+            DispatchQueue.main.async {
+                guard loginRefreshID == requestID else { return }
+                loginRegistration = registration
+                loginError = nil
+            }
         }
     }
 
     private func setLaunchAtLogin(_ enabled: Bool) {
-        let requestID = UUID()
-        loginRefreshID = requestID
-        loginPending = true
-        LaunchAtLogin.setEnabled(enabled) { actual, error in
-            guard loginRefreshID == requestID else { return }
-            launchAtLogin = actual
-            loginError = error?.localizedDescription
-            loginPending = false
+        loginRefreshID = UUID()
+        do {
+            try LaunchAtLogin.setEnabled(enabled)
+            loginError = nil
+        } catch {
+            loginError = error.localizedDescription
         }
+        loginRegistration = LaunchAtLogin.registration
+        // Approval guidance follows current system status, including on a
+        // fresh page, instead of retaining an error from a previous attempt.
+        if loginRegistration == .needsApproval { loginError = nil }
     }
 
 }
