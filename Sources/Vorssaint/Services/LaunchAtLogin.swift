@@ -10,8 +10,11 @@ import ServiceManagement
 /// registration never drift apart. `LaunchAtLoginSupport` explains why the
 /// system record alone cannot be trusted across relaunches.
 enum LaunchAtLogin {
+    /// Service Management can stall while answering, so every read and
+    /// change runs here, off the main thread. The queue is serial, so a change
+    /// made in Settings always runs after the startup repair.
     private static let operationQueue = DispatchQueue(
-        label: "com.vorssaint.utils.launch-at-login", qos: .utility)
+        label: "com.vorssaint.utils.launch-at-login", qos: .userInitiated)
 
     /// What the system holds for this app right now.
     static var registration: LaunchAtLoginSupport.Registration {
@@ -37,26 +40,31 @@ enum LaunchAtLogin {
         var errorDescription: String? { L10n.shared.s.launchAtLoginNeedsApproval }
     }
 
-    static func refresh(_ completion: @escaping (Bool) -> Void) {
+    /// Reads the registration once any repair or change queued before it is
+    /// done, and answers on the main thread.
+    static func refresh(_ completion: @escaping (LaunchAtLoginSupport.Registration) -> Void) {
         operationQueue.async {
-            let enabled = isEnabled
-            DispatchQueue.main.async { completion(enabled) }
+            let current = registration
+            DispatchQueue.main.async { completion(current) }
         }
     }
 
-    static func setEnabled(_ enabled: Bool, completion: @escaping (Bool, Error?) -> Void) {
+    /// Reports the registration the change left behind, since a register call
+    /// that succeeds can still leave the item waiting for approval. The answer
+    /// arrives on the main thread, where the error's message reads the
+    /// current language.
+    static func setEnabled(_ enabled: Bool,
+                           completion: @escaping (LaunchAtLoginSupport.Registration, Error?) -> Void) {
         operationQueue.async {
-            let actual: Bool
             let failure: Error?
             do {
                 try setEnabledNow(enabled)
-                actual = enabled
                 failure = nil
             } catch {
-                actual = isEnabled
                 failure = error
             }
-            DispatchQueue.main.async { completion(actual, failure) }
+            let current = registration
+            DispatchQueue.main.async { completion(current, failure) }
         }
     }
 
